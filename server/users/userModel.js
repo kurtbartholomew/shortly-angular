@@ -38,18 +38,23 @@ UserSchema.pre('save', function (next) {
   if (!user.isModified('password')) {
     return next();
   }
-
+  console.log("Attempting to create password hash");
   // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) {
       return next(err);
     }
+    console.log("Salt created, hashing password");
+    console.log(user.password);
+    console.log(salt);
 
     // hash the password along with our new salt
-    bcrypt.hash(user.password, salt, function(err, hash) {
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
       if (err) {
+        console.log('error')
         return next(err);
       }
+      console.log("Hash saved, moving to next promise");
 
       // override the cleartext password with the hashed one
       user.password = hash;

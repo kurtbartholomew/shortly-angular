@@ -30,6 +30,7 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
+    console.log(req.body)
     var username  = req.body.username,
         password  = req.body.password,
         create,
@@ -49,10 +50,12 @@ module.exports = {
             username: username,
             password: password
           };
+
           return create(newUser);
         }
       })
       .then(function (user) {
+        console.log(user);
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
