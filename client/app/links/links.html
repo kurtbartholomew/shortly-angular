@@ -1,3 +1,10 @@
 <div id='container'>
-  <!-- Your html here -->
+
+  <ul>
+    <li ng-repeat="link in data.links">{{ link.url }}</li>
+  </ul>
+
+  <button ng-click="console.log(data.links)">Get Links</button>
+
+
 </div>
