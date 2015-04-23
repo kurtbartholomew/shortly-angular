@@ -4,13 +4,23 @@
     <li><a href="">Links</a></li>
     <li><a href="/#/shorten">Shorten Url</a></li>
     <li><a href="" ng-click="signout()">Signout</a></li>
+    <li><input type="text" ng-model="search">
   </ul>
 
-  <ul>
-    <li ng-repeat="link in data.links">
-      <a href="{{ link.base_url + '/api/links/' + link.code}}">{{ link.title }}</a>
-    </li>
-  </ul>
+  <div class="links">
+    <div ng-repeat="link in data.links | filter: search | orderBy: '-visits'">
+      <div class="link">
+        <div class="visits">{{ link.visits }}</div>
+      </div>
+      <div class="link-information">
+        <ul>
+          <li><a href="{{ link.base_url + '/api/links/' + link.code}}">{{ link.title }}</a></li>
+          <li><a href="{{ link.base_url + '/api/links/' + link.code}}">{{ link.url }}</a></li>
+          <li><a href="{{ link.base_url + '/api/links/' + link.code}}">{{ link.base_url }}/{{ link.code }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- <button ng-click="console.log(data.links)">Get Links</button> -->
 
