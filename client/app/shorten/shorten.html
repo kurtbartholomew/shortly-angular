@@ -1,5 +1,11 @@
 <div id='container'>
 <!-- Your code here -->
+  <ul>
+    <li><a href="/#/links">Links</a></li>
+    <li><a href="">Shorten Url</a></li>
+    <li><a ng-click="signout()">Signout</a></li>
+  </ul>
+
   <form name="shortenForm" ng-submit='addLink()'>
     <input type='text'ng-model='link'>
     <button>shorten</button>

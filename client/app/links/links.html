@@ -1,10 +1,16 @@
 <div id='container'>
 
   <ul>
+    <li><a href="">Links</a></li>
+    <li><a href="/#/shorten">Shorten Url</a></li>
+    <li><a href="" ng-click="signout()">Signout</a></li>
+  </ul>
+
+  <ul>
     <li ng-repeat="link in data.links">{{ link.url }}</li>
   </ul>
 
-  <button ng-click="console.log(data.links)">Get Links</button>
+  <!-- <button ng-click="console.log(data.links)">Get Links</button> -->
 
 
 </div>
