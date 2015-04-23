@@ -5,10 +5,14 @@ angular.module('shortly.auth', [])
 
 .controller('AuthController', function ($scope, $window, $location, Auth) {
   $scope.user = {};
+  //$scope.submitted = false;
 
   $scope.signin = function () {
+    $scope.submitted = true;
+
     Auth.signin($scope.user)
       .then(function (token) {
+        //$scope.submitted = false;
         $window.localStorage.setItem('com.shortly', token);
         $location.path('/links');
       })
@@ -17,14 +21,21 @@ angular.module('shortly.auth', [])
       });
   };
 
-  $scope.signup = function () {
-    Auth.signup($scope.user)
-      .then(function (token) {
-        $window.localStorage.setItem('com.shortly', token);
-        $location.path('/links');
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  $scope.signup = function (isValid) {
+    $scope.submitted = true;
+    console.log(isValid);
+
+    if(isValid){
+      Auth.signup($scope.user)
+        .then(function (token) {
+          $scope.submitted = false;
+          $window.localStorage.setItem('com.shortly', token);
+          $location.path('/links');
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+
   };
 });

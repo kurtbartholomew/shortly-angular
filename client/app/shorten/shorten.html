@@ -6,10 +6,15 @@
     <li><a ng-click="signout()">Signout</a></li>
   </ul>
 
-  <form name="shortenForm" ng-submit='addLink()'>
-    <input type='text'ng-model='link'>
+  <form name="shortenForm" ng-submit='addLink(shortenForm.$valid)' novalidate>
+    <!-- <p ng-show="shortenForm.link.$error">Must be valid URL, fool?</p> -->
+    <p ng-show="shortenForm.link.$invalid && !shortenForm.link.$pristine && submitted">Must be valid URL, fool?</p>
+    <input type='url'ng-model='link' name='link'
+      ng-class="{'has-error': shortenForm.link.$invalid && !shortenForm.link.$pristine && submitted }"
+      required>
     <button>shorten</button>
   </form>
+
 </div>
 
 

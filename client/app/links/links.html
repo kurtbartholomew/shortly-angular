@@ -7,7 +7,9 @@
   </ul>
 
   <ul>
-    <li ng-repeat="link in data.links">{{ link.url }}</li>
+    <li ng-repeat="link in data.links">
+      <a href="{{ link.base_url + '/api/links/' + link.code}}">{{ link.title }}</a>
+    </li>
   </ul>
 
   <!-- <button ng-click="console.log(data.links)">Get Links</button> -->
